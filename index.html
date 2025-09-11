@@ -3,107 +3,89 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title data-i18n-title="site_title">Personal site — David Sargsyan</title>
+  <title>Personal site — David Sargsyan</title>
   <style>
-    :root{
-      --bg:#0f1724; --card:#0b1220; --muted:#9aa4b2; --accent:#7c3aed; --glass: rgba(255,255,255,0.04);
-      --text:#e6eef8;
+    :root {
+      --bg-dark: #0f1724;
+      --card-dark: #0b1220;
+      --text-dark: #e6eef8;
+      --muted-dark: #9aa4b2;
+
+      --bg-light: #f9fafb;
+      --card-light: #ffffff;
+      --text-light: #111;
+      --muted-light: #555;
+
+      --accent: #7c3aed;
     }
-    :root.light{
-      --bg:#f9fafb; --card:#ffffff; --muted:#555; --accent:#7c3aed; --glass: rgba(0,0,0,0.05);
-      --text:#111;
+    body.dark {
+      background: var(--bg-dark);
+      color: var(--text-dark);
     }
-    *{box-sizing:border-box}
-    body{margin:0;font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;background:var(--bg);color:var(--text);line-height:1.5;transition:background .3s,color .3s}
-    .container{max-width:1000px;margin:36px auto;padding:24px}
-    header{display:flex;align-items:center;justify-content:space-between;gap:12px}
-    .brand{display:flex;align-items:center;gap:12px}
-    .logo{width:56px;height:56px;border-radius:12px;background:linear-gradient(135deg,var(--accent),#5b9df5);display:flex;align-items:center;justify-content:center;font-weight:700;color:white}
-    nav a{color:var(--muted);text-decoration:none;margin-left:14px}
-    nav a:hover{color:var(--accent)}
-
-    .hero{display:grid;grid-template-columns:1fr 320px;gap:24px;margin-top:36px;align-items:center}
-    .card{background:var(--card);padding:20px;border-radius:16px;box-shadow:0 6px 24px rgba(2,6,23,0.2);transition:background .3s}
-    h1{margin:0 0 8px;font-size:28px}
-    p.lead{margin:0;color:var(--muted)}
-
-    .avatar{width:100%;height:320px;border-radius:12px;background:linear-gradient(180deg,#122033,#0a1622);display:flex;align-items:center;justify-content:center;color:var(--muted);overflow:hidden}
-    :root.light .avatar{background:#eee;color:#333}
-    .avatar img{width:100%;height:100%;object-fit:cover}
-    .skills{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
-    .skill{background:var(--glass);padding:8px 10px;border-radius:999px;color:var(--muted);font-size:13px}
-
-    section{margin-top:20px}
-    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-    .project{padding:12px;border-radius:10px;background:var(--glass)}
-    .meta{color:var(--muted);font-size:13px}
-
-    footer{margin-top:28px;padding:18px 12px;border-radius:12px;background:var(--glass);display:flex;justify-content:space-between;align-items:center}
-
-    /* responsive */
-    @media (max-width:920px){
-      .hero{grid-template-columns:1fr}
-      .avatar{height:220px}
-      .grid-3{grid-template-columns:repeat(2,1fr)}
+    body.light {
+      background: var(--bg-light);
+      color: var(--text-light);
     }
-    @media (max-width:520px){
-      nav{display:none}
-      .grid-3{grid-template-columns:1fr}
+    .card {
+      padding: 20px;
+      border-radius: 12px;
+      margin-top: 20px;
     }
+    body.dark .card { background: var(--card-dark); }
+    body.light .card { background: var(--card-light); }
 
-    form input, form textarea{width:100%;padding:10px;border-radius:8px;border:1px solid var(--glass);background:transparent;color:inherit}
-    form button{margin-top:8px;padding:10px 12px;border-radius:8px;border:0;background:var(--accent);color:white;cursor:pointer}
-    .muted{color:var(--muted)}
+    header {display:flex;justify-content:space-between;align-items:center;}
+    .logo {font-weight:700; font-size:20px;}
 
-    .lang-switch{display:flex;gap:8px}
-    .lang-switch button{background:transparent;border:1px solid var(--glass);padding:6px 8px;border-radius:8px;color:var(--muted);cursor:pointer}
-    .lang-switch button.active{background:var(--accent);color:white;border-color:var(--accent)}
-
-    .theme-toggle{margin-left:12px;cursor:pointer;background:transparent;border:1px solid var(--glass);padding:6px 10px;border-radius:8px;color:var(--muted)}
-    .theme-toggle.active{background:var(--accent);color:white}
+    button#themeToggle {
+      border: none;
+      background: var(--accent);
+      color: white;
+      padding: 6px 10px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
   </style>
 </head>
-<body>
-  <div class="container">
-    <header>
-      <div class="brand">
-        <div class="logo">DS</div>
-        <div>
-          <div style="font-weight:700" data-i18n="name">David Sargsyan</div>
-          <div class="muted" style="font-size:13px" data-i18n="tag">13 лет · Программирование · Армения</div>
-        </div>
-      </div>
-      <nav>
-        <a href="#about" data-i18n="nav_about">About</a>
-        <a href="#works" data-i18n="nav_works">Projects</a>
-        <a href="#contact" data-i18n="nav_contact">Contact</a>
-      </nav>
-      <button id="themeToggle" class="theme-toggle">🌙</button>
-    </header>
+<body class="dark">
+  <header>
+    <div class="logo">David Sargsyan</div>
+    <button id="themeToggle">🌙</button>
+  </header>
 
-    <!-- остальной контент остается как раньше (hero, sections, footer, etc.) -->
+  <main>
+    <div class="card">
+      <h1>Привет! Я Давид Саргсян</h1>
+      <p>Мне 13 лет, я живу в Армении и увлекаюсь программированием.</p>
+      <img src="blob:https://web.telegram.org/8d84cb78-d89e-4c7a-8dd6-a55123117062" alt="David" style="width:200px;border-radius:12px;">
+    </div>
 
-  </div>
+    <div class="card">
+      <h2>Контакты</h2>
+      <p>Email: <a href="mailto:davit.sargsyan.60@yandex.com">davit.sargsyan.60@yandex.com</a></p>
+      <p>Это вся контактная информация обо мне.</p>
+    </div>
+  </main>
 
   <script>
-    // автоматическое обновление года
-    document.getElementById('year').textContent = new Date().getFullYear();
-
-    // smooth scroll
-    document.querySelectorAll('a[href^="#"]').forEach(a=>{
-      a.addEventListener('click', e=>{
-        e.preventDefault();
-        document.querySelector(a.getAttribute('href')).scrollIntoView({behavior:'smooth'});
-      });
-    });
-
-    // theme toggle
     const btn = document.getElementById('themeToggle');
+    const body = document.body;
+
+    // load saved theme
+    if(localStorage.getItem('theme')){
+      body.className = localStorage.getItem('theme');
+      btn.textContent = body.classList.contains('light') ? '☀️' : '🌙';
+    }
+
     btn.addEventListener('click', ()=>{
-      document.documentElement.classList.toggle('light');
-      const isLight = document.documentElement.classList.contains('light');
-      btn.textContent = isLight ? '☀️' : '🌙';
-      btn.classList.toggle('active', isLight);
+      if(body.classList.contains('dark')){
+        body.className = 'light';
+        btn.textContent = '☀️';
+      } else {
+        body.className = 'dark';
+        btn.textContent = '🌙';
+      }
+      localStorage.setItem('theme', body.className);
     });
   </script>
 </body>
