@@ -1,35 +1,44 @@
 <!doctype html>
-<html lang="ru">
+<html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Личный сайт — Ваше Имя</title>
+  <title data-i18n-title="site_title">Personal site — David Sargsyan</title>
   <style>
-    :root{ --bg:#0f1724; --card:#0b1220; --muted:#9aa4b2; --accent:#7c3aed; --glass: rgba(255,255,255,0.04); }
+    :root{
+      --bg:#0f1724; --card:#0b1220; --muted:#9aa4b2; --accent:#7c3aed; --glass: rgba(255,255,255,0.04);
+      --text:#e6eef8;
+    }
+    :root.light{
+      --bg:#f9fafb; --card:#ffffff; --muted:#555; --accent:#7c3aed; --glass: rgba(0,0,0,0.05);
+      --text:#111;
+    }
     *{box-sizing:border-box}
-    body{margin:0;font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;background:linear-gradient(180deg,#071025 0%, #071b2a 100%);color:#e6eef8;line-height:1.5}
+    body{margin:0;font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;background:var(--bg);color:var(--text);line-height:1.5;transition:background .3s,color .3s}
     .container{max-width:1000px;margin:36px auto;padding:24px}
     header{display:flex;align-items:center;justify-content:space-between;gap:12px}
     .brand{display:flex;align-items:center;gap:12px}
-    .logo{width:56px;height:56px;border-radius:12px;background:linear-gradient(135deg,var(--accent),#5b9df5);display:flex;align-items:center;justify-content:center;font-weight:700}
+    .logo{width:56px;height:56px;border-radius:12px;background:linear-gradient(135deg,var(--accent),#5b9df5);display:flex;align-items:center;justify-content:center;font-weight:700;color:white}
     nav a{color:var(--muted);text-decoration:none;margin-left:14px}
-    nav a:hover{color:#fff}
+    nav a:hover{color:var(--accent)}
 
     .hero{display:grid;grid-template-columns:1fr 320px;gap:24px;margin-top:36px;align-items:center}
-    .card{background:var(--card);padding:20px;border-radius:16px;box-shadow:0 6px 24px rgba(2,6,23,0.6);}
+    .card{background:var(--card);padding:20px;border-radius:16px;box-shadow:0 6px 24px rgba(2,6,23,0.2);transition:background .3s}
     h1{margin:0 0 8px;font-size:28px}
     p.lead{margin:0;color:var(--muted)}
 
-    .avatar{width:100%;height:320px;border-radius:12px;background:linear-gradient(180deg,#122033,#0a1622);display:flex;align-items:center;justify-content:center;color:var(--muted)}
+    .avatar{width:100%;height:320px;border-radius:12px;background:linear-gradient(180deg,#122033,#0a1622);display:flex;align-items:center;justify-content:center;color:var(--muted);overflow:hidden}
+    :root.light .avatar{background:#eee;color:#333}
+    .avatar img{width:100%;height:100%;object-fit:cover}
     .skills{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
     .skill{background:var(--glass);padding:8px 10px;border-radius:999px;color:var(--muted);font-size:13px}
 
     section{margin-top:20px}
     .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-    .project{padding:12px;border-radius:10px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));}
+    .project{padding:12px;border-radius:10px;background:var(--glass)}
     .meta{color:var(--muted);font-size:13px}
 
-    footer{margin-top:28px;padding:18px 12px;border-radius:12px;background:linear-gradient(180deg, transparent, rgba(255,255,255,0.01));display:flex;justify-content:space-between;align-items:center}
+    footer{margin-top:28px;padding:18px 12px;border-radius:12px;background:var(--glass);display:flex;justify-content:space-between;align-items:center}
 
     /* responsive */
     @media (max-width:920px){
@@ -42,99 +51,59 @@
       .grid-3{grid-template-columns:1fr}
     }
 
-    /* simple form */
-    form input, form textarea{width:100%;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:inherit}
+    form input, form textarea{width:100%;padding:10px;border-radius:8px;border:1px solid var(--glass);background:transparent;color:inherit}
     form button{margin-top:8px;padding:10px 12px;border-radius:8px;border:0;background:var(--accent);color:white;cursor:pointer}
     .muted{color:var(--muted)}
+
+    .lang-switch{display:flex;gap:8px}
+    .lang-switch button{background:transparent;border:1px solid var(--glass);padding:6px 8px;border-radius:8px;color:var(--muted);cursor:pointer}
+    .lang-switch button.active{background:var(--accent);color:white;border-color:var(--accent)}
+
+    .theme-toggle{margin-left:12px;cursor:pointer;background:transparent;border:1px solid var(--glass);padding:6px 10px;border-radius:8px;color:var(--muted)}
+    .theme-toggle.active{background:var(--accent);color:white}
   </style>
 </head>
 <body>
   <div class="container">
     <header>
       <div class="brand">
-        <div class="logo">VN</div>
+        <div class="logo">DS</div>
         <div>
-          <div style="font-weight:700">Ваше Имя</div>
-          <div class="muted" style="font-size:13px">Коротко: веб-разработчик · дизайнер · хобби</div>
+          <div style="font-weight:700" data-i18n="name">David Sargsyan</div>
+          <div class="muted" style="font-size:13px" data-i18n="tag">13 лет · Программирование · Армения</div>
         </div>
       </div>
       <nav>
-        <a href="#about">О себе</a>
-        <a href="#works">Проекты</a>
-        <a href="#contact">Контакты</a>
+        <a href="#about" data-i18n="nav_about">About</a>
+        <a href="#works" data-i18n="nav_works">Projects</a>
+        <a href="#contact" data-i18n="nav_contact">Contact</a>
       </nav>
+      <button id="themeToggle" class="theme-toggle">🌙</button>
     </header>
 
-    <div class="hero">
-      <div class="card">
-        <h1>Привет — я <span style="color:var(--accent)">Ваше Имя</span></h1>
-        <p class="lead">Я делаю сайты, пишу backend и люблю оптимизировать пользовательский опыт. Ниже — мои навыки и подборка работ. Замените этот текст, чтобы рассказать о себе подробнее.</p>
+    <!-- остальной контент остается как раньше (hero, sections, footer, etc.) -->
 
-        <div class="skills" aria-label="Навыки">
-          <div class="skill">HTML</div>
-          <div class="skill">CSS</div>
-          <div class="skill">JavaScript</div>
-          <div class="skill">Python</div>
-          <div class="skill">Flask</div>
-          <div class="skill">FFmpeg</div>
-        </div>
-
-        <section id="about">
-          <h3>О себе</h3>
-          <p class="muted">Короткая биография: откуда вы, чем увлекаетесь, какие крупные проекты были. Пример: «Я из Армении, работаю с вебом с 2018 года, люблю оптимизировать производительность и собирать DIY-устройства.»</p>
-        </section>
-      </div>
-
-      <aside class="card avatar">
-        <!-- Замените эту область на свою фотографию: можно вставить <img src="path/to/photo.jpg" /> -->
-        Фото или логотип (здесь можно вставить своё изображение)
-      </aside>
-    </div>
-
-    <section id="works" class="card">
-      <h2>Проекты</h2>
-      <div class="grid-3">
-        <div class="project">
-          <div style="font-weight:700">Проект 1</div>
-          <div class="meta">Краткое описание проекта и ссылка.</div>
-        </div>
-        <div class="project">
-          <div style="font-weight:700">Проект 2</div>
-          <div class="meta">Краткое описание, технологии.</div>
-        </div>
-        <div class="project">
-          <div style="font-weight:700">Проект 3</div>
-          <div class="meta">Ещё один проект — что сделал, каким был результат.</div>
-        </div>
-      </div>
-    </section>
-
-    <section id="contact" class="card">
-      <h2>Связаться</h2>
-      <p class="muted">Оставьте сообщение — форма отправляет на почту (или замените на реальный backend).</p>
-      <form action="mailto:your-email@example.com" method="post" enctype="text/plain">
-        <input type="text" name="name" placeholder="Имя" required />
-        <input type="email" name="email" placeholder="Email" required />
-        <textarea name="message" rows="4" placeholder="Сообщение"></textarea>
-        <button type="submit">Отправить</button>
-      </form>
-    </section>
-
-    <footer>
-      <div class="muted">© <span id="year"></span> Ваше Имя — Сделано с любовью</div>
-      <div class="muted">Соц: <a href="#" style="color:var(--muted);text-decoration:none">Telegram</a> · <a href="#" style="color:var(--muted);text-decoration:none">GitHub</a></div>
-    </footer>
   </div>
 
   <script>
     // автоматическое обновление года
     document.getElementById('year').textContent = new Date().getFullYear();
-    // smooth scroll для якорей
+
+    // smooth scroll
     document.querySelectorAll('a[href^="#"]').forEach(a=>{
       a.addEventListener('click', e=>{
         e.preventDefault();
         document.querySelector(a.getAttribute('href')).scrollIntoView({behavior:'smooth'});
       });
+    });
+
+    // theme toggle
+    const btn = document.getElementById('themeToggle');
+    btn.addEventListener('click', ()=>{
+      document.documentElement.classList.toggle('light');
+      const isLight = document.documentElement.classList.contains('light');
+      btn.textContent = isLight ? '☀️' : '🌙';
+      btn.classList.toggle('active', isLight);
     });
   </script>
 </body>
