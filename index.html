@@ -1,92 +1,124 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Personal site — David Sargsyan</title>
-  <style>
-    :root {
-      --bg-dark: #0f1724;
-      --card-dark: #0b1220;
-      --text-dark: #e6eef8;
-      --muted-dark: #9aa4b2;
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>David Sargsyan — Personal Site</title>
+<style>
+  :root {
+    --accent: #7c3aed;
+    --transition: 0.3s;
+  }
+  body {
+    margin: 0; font-family: Inter, sans-serif;
+    transition: background var(--transition), color var(--transition);
+  }
+  body.dark {
+    --bg: #0f1724; --card: #0b1220; --text: #e6eef8; --muted: #9aa4b2;
+  }
+  body.light {
+    --bg: #f9fafb; --card: #fff; --text: #111; --muted: #555;
+  }
+  body {background: var(--bg); color: var(--text);}
+  a {color: var(--accent); text-decoration: none;}
+  header {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 12px 24px; background: var(--card); box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    position: sticky; top:0; z-index: 100;
+  }
+  .logo {font-weight:700; font-size: 20px;}
+  nav a {margin-left: 16px; color: var(--muted);}
+  nav a:hover {color: var(--accent);}
+  button#themeToggle {
+    border:none; border-radius:8px; padding:6px 10px; cursor:pointer;
+    background: var(--accent); color:#fff;
+  }
 
-      --bg-light: #f9fafb;
-      --card-light: #ffffff;
-      --text-light: #111;
-      --muted-light: #555;
+  main {max-width: 900px; margin:36px auto; padding:0 16px;}
+  .hero {display:flex; flex-wrap:wrap; align-items:center; gap:24px;}
+  .hero img {width:250px; border-radius:16px; flex-shrink:0;}
+  .hero .intro {flex:1; min-width:220px;}
+  .intro h1 {margin:0 0 12px; font-size:28px;}
+  .intro p {margin:0 0 12px; color: var(--muted); line-height:1.5;}
+  .skills {display:flex; flex-wrap:wrap; gap:8px; margin-top:12px;}
+  .skill {padding:6px 10px; background: var(--card); border-radius:999px; font-size:13px; transition:0.2s; cursor:default;}
+  .skill:hover {background: var(--accent); color:#fff;}
 
-      --accent: #7c3aed;
-    }
-    body.dark {
-      background: var(--bg-dark);
-      color: var(--text-dark);
-    }
-    body.light {
-      background: var(--bg-light);
-      color: var(--text-light);
-    }
-    .card {
-      padding: 20px;
-      border-radius: 12px;
-      margin-top: 20px;
-    }
-    body.dark .card { background: var(--card-dark); }
-    body.light .card { background: var(--card-light); }
+  section {margin-top:36px;}
+  .projects {display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:16px;}
+  .project {background: var(--card); padding:16px; border-radius:12px; transition:0.3s; cursor:pointer;}
+  .project:hover {transform: translateY(-4px); box-shadow:0 6px 16px rgba(0,0,0,0.2);}
 
-    header {display:flex;justify-content:space-between;align-items:center;}
-    .logo {font-weight:700; font-size:20px;}
+  .contact p, .contact a {margin:4px 0;}
+  footer {text-align:center; margin:36px 0; color: var(--muted); font-size:14px;}
 
-    button#themeToggle {
-      border: none;
-      background: var(--accent);
-      color: white;
-      padding: 6px 10px;
-      border-radius: 8px;
-      cursor: pointer;
-    }
-  </style>
+  @media(max-width:600px){.hero {flex-direction:column; align-items:center;}.hero img{width:200px;}}
+</style>
 </head>
 <body class="dark">
-  <header>
-    <div class="logo">David Sargsyan</div>
-    <button id="themeToggle">🌙</button>
-  </header>
 
-  <main>
-    <div class="card">
+<header>
+  <div class="logo">David Sargsyan</div>
+  <nav>
+    <a href="#about">About</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+  </nav>
+  <button id="themeToggle">🌙</button>
+</header>
+
+<main>
+  <section class="hero">
+    <img src="https://via.placeholder.com/250" alt="David">
+    <div class="intro">
       <h1>Привет! Я Давид Саргсян</h1>
-      <p>Мне 13 лет, я живу в Армении и увлекаюсь программированием.</p>
-      <img src="blob:https://web.telegram.org/8d84cb78-d89e-4c7a-8dd6-a55123117062" alt="David" style="width:200px;border-radius:12px;">
+      <p>Мне 13 лет, я живу в Армении и увлекаюсь программированием. Люблю создавать веб-сайты и изучать новые технологии.</p>
+      <div class="skills">
+        <div class="skill">HTML</div>
+        <div class="skill">CSS</div>
+        <div class="skill">JavaScript</div>
+        <div class="skill">Python</div>
+        <div class="skill">Flask</div>
+      </div>
     </div>
+  </section>
 
-    <div class="card">
-      <h2>Контакты</h2>
-      <p>Email: <a href="mailto:davit.sargsyan.60@yandex.com">davit.sargsyan.60@yandex.com</a></p>
-      <p>Это вся контактная информация обо мне.</p>
+  <section id="projects">
+    <h2>Проекты</h2>
+    <div class="projects">
+      <div class="project"><strong>Проект 1</strong><p>Простой сайт на HTML/CSS.</p></div>
+      <div class="project"><strong>Проект 2</strong><p>Бот на Python.</p></div>
+      <div class="project"><strong>Проект 3</strong><p>Веб-приложение с Flask.</p></div>
     </div>
-  </main>
+  </section>
 
-  <script>
-    const btn = document.getElementById('themeToggle');
-    const body = document.body;
+  <section id="contact" class="contact">
+    <h2>Контакты</h2>
+    <p>Email: <a href="mailto:davit.sargsyan.60@yandex.com">davit.sargsyan.60@yandex.com</a></p>
+    <p>Русский: Email: davit.sargsyan.60@yandex.com — это вся контактная информация обо мне.</p>
+    <p>Հայերեն: Էլ․ հասցե՝ davit.sargsyan.60@yandex.com — սա իմ ողջ կոնտակտային տեղեկատվությունն է։</p>
+  </section>
+</main>
 
-    // load saved theme
-    if(localStorage.getItem('theme')){
-      body.className = localStorage.getItem('theme');
-      btn.textContent = body.classList.contains('light') ? '☀️' : '🌙';
-    }
+<footer>
+  © <span id="year"></span> David Sargsyan — Все права защищены.
+</footer>
 
-    btn.addEventListener('click', ()=>{
-      if(body.classList.contains('dark')){
-        body.className = 'light';
-        btn.textContent = '☀️';
-      } else {
-        body.className = 'dark';
-        btn.textContent = '🌙';
-      }
-      localStorage.setItem('theme', body.className);
-    });
-  </script>
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+  const btn = document.getElementById('themeToggle');
+  const body = document.body;
+  if(localStorage.getItem('theme')){
+    body.className = localStorage.getItem('theme');
+    btn.textContent = body.classList.contains('light') ? '☀️' : '🌙';
+  }
+  btn.addEventListener('click', ()=>{
+    if(body.classList.contains('dark')){
+      body.className='light'; btn.textContent='☀️';
+    } else { body.className='dark'; btn.textContent='🌙'; }
+    localStorage.setItem('theme', body.className);
+  });
+</script>
+
 </body>
 </html>
